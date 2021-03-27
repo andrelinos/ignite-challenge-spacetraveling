@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import { FiCalendar, FiUser } from 'react-icons/fi';
 import Prismic from '@prismicio/client';
 import { format } from 'date-fns';
@@ -10,6 +11,8 @@ import { getPrismicClient } from '../services/prismic';
 
 import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
+
+import Header from '../components/Header';
 
 interface Post {
   uid?: string;
@@ -72,29 +75,29 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
         <title>Home | Space Traveling</title>
       </Head>
 
-      <main className={styles.container}>
-        <div className={styles.content}>
-          <header>
-            <img src="/images/logo.svg" alt="logo" />
-          </header>
+      <div className={styles.container}>
+        <Header />
 
+        <main className={styles.content}>
           <section className={styles.posts}>
             {posts.map(post => (
-              <a href={`/posts/${post.uid}`} key={post.uid}>
-                <h2>{post.data.title}</h2>
-                <p>{post.data.subtitle}</p>
-                <div>
-                  <span>
-                    <FiCalendar size={20} color="#BBBBBB" />
-                    {post.first_publication_date}
-                  </span>
+              <Link href={`/post/${post.uid}`} key={post.uid}>
+                <a>
+                  <h2>{post.data.title}</h2>
+                  <p>{post.data.subtitle}</p>
+                  <div>
+                    <span>
+                      <FiCalendar size={20} color="#BBBBBB" />
+                      {post.first_publication_date}
+                    </span>
 
-                  <span>
-                    <FiUser size={20} color="#BBBBBB" />
-                    {post.data.author}
-                  </span>
-                </div>
-              </a>
+                    <span>
+                      <FiUser size={20} color="#BBBBBB" />
+                      {post.data.author}
+                    </span>
+                  </div>
+                </a>
+              </Link>
             ))}
           </section>
 
@@ -103,8 +106,8 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
               Carregar mais posts
             </button>
           )}
-        </div>
-      </main>
+        </main>
+      </div>
     </>
   );
 }

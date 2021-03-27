@@ -1,16 +1,11 @@
 .container {
-  max-width: 1120px;
-  margin: 0 auto;
-  padding: 0 2rem 5rem;
+  padding: 2.5rem 0 5rem;
 }
 
 .content {
   max-width: 700px;
   margin: 0 auto;
-
-  header {
-    margin: 5rem 0 0;
-  }
+  padding: 1.5rem 2rem 0;
 
   button {
     background: transparent;
@@ -24,7 +19,6 @@
 
 .posts {
   width: 100%;
-  margin: 4rem 0 0;
 
   a {
     display: block;
