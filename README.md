@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  Blog para com conteúdos atuais sobre o mundo da programação.
+  Blog com conteúdos atuais sobre o mundo da programação e tecnologia.
 </p>
 
 <h2> Tecnologias utilizadas: </h2>
