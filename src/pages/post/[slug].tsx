@@ -72,7 +72,7 @@ export default function Post({ post }: PostProps): JSX.Element {
         </section>
       )}
 
-      <main className={styles.container}>
+      <main className={commonStyles.content}>
         <article className={styles.post}>
           <h1>{post.data.title}</h1>
 
