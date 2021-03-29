@@ -9,6 +9,7 @@ import Prismic from '@prismicio/client';
 
 import Header from '../../components/Header';
 import Comments from '../../components/Comments';
+import PreviewButton from '../../components/PreviewButton';
 
 import { getPrismicClient } from '../../services/prismic';
 
@@ -34,9 +35,10 @@ interface Post {
 
 interface PostProps {
   post: Post;
+  preview: boolean;
 }
 
-export default function Post({ post }: PostProps): JSX.Element {
+export default function Post({ post, preview }: PostProps): JSX.Element {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -112,6 +114,8 @@ export default function Post({ post }: PostProps): JSX.Element {
         </article>
 
         <Comments />
+
+        {preview && <PreviewButton />}
       </main>
     </>
   );
@@ -139,7 +143,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps<PostProps> = async ({
+  params,
+  preview = false,
+}) => {
   const { slug } = params;
 
   const prismic = getPrismicClient();
@@ -161,6 +168,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       post,
+      preview,
     },
     revalidate: 60 * 30, // 30 minutos
   };
