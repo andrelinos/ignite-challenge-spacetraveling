@@ -8,6 +8,7 @@ import { RichText } from 'prismic-dom';
 import Prismic from '@prismicio/client';
 
 import Header from '../../components/Header';
+import Comments from '../../components/Comments';
 
 import { getPrismicClient } from '../../services/prismic';
 
@@ -109,6 +110,8 @@ export default function Post({ post }: PostProps): JSX.Element {
             ))}
           </div>
         </article>
+
+        <Comments />
       </main>
     </>
   );
